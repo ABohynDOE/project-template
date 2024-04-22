@@ -1,0 +1,10 @@
+
+\newpage 
+
+```{r {{Name}} }
+#| label: {{Name}}
+#| fig.cap: "{{Title}}"
+#| fig.id: "{{Name}}"
+figure_path <- "../../results/figures/{{Name}}.png"
+knitr::include_graphics(figure_path)
+```

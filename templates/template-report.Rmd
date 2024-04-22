@@ -1,0 +1,82 @@
+---
+output: 
+  officedown::rdocx_document:
+    reference_docx: "../../templates/template.docx"
+    plots:
+      style: Normal
+      caption:
+       style: Table Caption
+       pre: 'Figure '
+       sep: ': '
+      align: center
+      topcaption: true
+    page_size:
+      width: 8.3
+      height: 11.7
+      orient: "landscape"
+    page_margins:
+      bottom: 1
+      top: 1
+      right: 1.5
+      left: 1.5
+      header: 0.5
+      footer: 0.5
+      gutter: 0.5
+    tables:
+      style: Table
+      layout: autofit
+      width: 1.0
+      caption:
+       style: Table Caption
+       pre: 'Table '
+       sep: ': '
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 8,
+  fig.height = 5
+)
+
+library(officedown)
+library(officer)
+library(flextable)
+```
+
+```{r cover}
+data <- data.frame(
+  "value" = c(
+    "",
+    Sys.getenv("PROJECT_NAME"),
+    format(Sys.Date(), "%d %B %Y"),
+    paste0("Version ", Sys.getenv("VERSION"))
+  )
+)
+
+flextable(data) |>
+  font(fontname = "Arial") |>
+  fontsize(size = 34) |>
+  delete_part("header") |>
+  border_remove() |>
+  height(height = 2, unit = "cm", part = "body") |>
+  width(width = 20, unit = "cm") |>
+  align(align = "center", part = "all") |>
+  bold(2, 1)
+```
+
+\newpage
+
+# List of tables
+
+```{r}
+block_toc(seq_id = "tab")
+```
+
+# List of Figures
+
+```{r}
+block_toc(seq_id = "fig")
+```

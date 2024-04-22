@@ -1,0 +1,11 @@
+
+\newpage
+
+```{r {{Name}} }
+#| label: {{Name}}
+#| tab.cap: "{{Title}}"
+#| tab.id: "{{Name}}"
+table_path <- "../../RData/tables/{{Name}}.rds"
+table <- readRDS(table_path)
+table
+```
